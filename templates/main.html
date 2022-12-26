@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>HashChat</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'styles/nav.css' %}" rel="stylesheet" />
+        <link href="{% static 'styles/profile.css' %}" rel="stylesheet" />
+    </head>
+<body>
+    {% include 'nav.html' %}
+    {% block content %}
+    {% endblock content %}
+</body>
+ <script src="{% static 'js/nav.js' %}"></script>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+<div style="display: flex; ">
+    <img style="width: 600px; height: 300px; " src="{{post.posted_image.url}}" alt="pp-image">
+    <div>
+
+        <h1><a href="{% url 'user-profile' post.owner.id %}">{{post.owner.name}}</a></h1>
+        <p>{{post.description}}</p>
+        <div>
+            <button onclick="post.addlike">Like</button>
+            <button>Comment</button>
+            <button>Share</button>
+        </div>
+        <p>{{post.total_likes}} likes</p>
+        <p>{{post.created}}</p>
+        <p>View all {{post.total_comments}} comments</p>
+        {% for cment in cments %}
+        <div style="display: flex; justify-content: space-between;">
+            <h4>{{post.owner.name}}</h4>
+            <p>{{cment.short_troll}}</p>
+        </div>
+        {% endfor %}
+        <form action="{% url 'single-post' post.id %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="review" id="" placeholder="Add a comment" />
+            <input type="button" value="Post" />
+         </form>
+    </div>
+</div>
+
+{% endblock content %}
