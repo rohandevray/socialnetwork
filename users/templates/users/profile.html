@@ -1,38 +1,27 @@
 {% extends 'main.html' %}
 {% block content %}
+
 <header>
 	<div class="container">
-
 		<div class="profile">
-
 			<div class="profile-image">
-
 				<img style="width: 200px; height: 200px;" src="{{profile.profile_image.url}}" alt="pp-image">
-
 			</div>
-
 			<div class="profile-user-settings">
-
 				<h1 class="profile-user-name">{{profile.username}}</h1>
-
-				<button class="btn profile-edit-btn">Edit Profile</button>
+				<button class="btn profile-edit-btn"><a href="{% url 'update-profile' profile.id %}">Edit Profile</a></button>
                 <button class="btn profile-edit-btn"> <a href="{% url 'post-form' %}">Post</a></button>
 				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
-
 			</div>
-
 			<div class="profile-stats">
-
 				<ul>
 					<li><span class="profile-stat-count">{{posts_count}}</span> posts</li>
 					<li><span class="profile-stat-count">{{profile.followers}}</span> followers</li>
 					<li><span class="profile-stat-count">{{profile.following}}</span> following</li>
 				</ul>
-
 			</div>
-
 			<div class="profile-bio">
-				<p><span class="profile-real-name">{{profile.name}}</span> <br>{{profile.bio}}</p>
+				<p><span class="profile-real-name">{{profile.name}}</span><br>{{profile.bio}}</p>
 			</div>
 
 		</div>
@@ -51,50 +40,21 @@
 
 			
           {% for post in posts %}
+		  <a href="{% url 'single-post' post.id %}">
 			<div class="gallery-item" tabindex="0">
 
-				<img src="{{post.posted_image.url}}" class="gallery-image" alt="">
+				<img src="{{post.posted_image.url}}" class="gallery-image" alt="" style="width: 300px; height: 300px;">
 
 				<div class="gallery-item-info">
 
 					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> {{post.total_likes}}</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> {{post.total_comments}}</li>
+						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i>{{post.total_likes}}</li>
+						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i>{{post.total_comments}}</li>
 					</ul>
 
 				</div>
-
 			</div>
-			<div class="gallery-item" tabindex="0">
-
-				<img src="{{post.posted_image.url}}" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> {{post.total_likes}}</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> {{post.total_comments}}</li>
-					</ul>
-
-				</div>
-
-			</div>
-			<div class="gallery-item" tabindex="0">
-
-				<img src="{{post.posted_image.url}}" class="gallery-image" alt="">
-
-				<div class="gallery-item-info">
-
-					<ul>
-						<li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> {{post.total_likes}}</li>
-						<li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> {{post.total_comments}}</li>
-					</ul>
-
-				</div>
-
-			</div>
-		
-			
+		</a>
           {% endfor %}
 		 
 			

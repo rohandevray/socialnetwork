@@ -20,10 +20,10 @@
             <p>{{cment.short_troll}}</p>
         </div>
         {% endfor %}
-        <form action="{% url 'single-post' post.id %}" method="POST">
+        <form action="{% url 'single-post' post.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" name="review" id="" placeholder="Add a comment" />
-            <input type="button" value="Post" />
+            <input type="button" value="Submit" />
          </form>
     </div>
 </div>

@@ -25,8 +25,14 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <img style="width: 300px; height: 200px;" src="{{post.posted_image.url}}" alt="xyz">
+                            <div class="bns" style="display: flex; padding: 2% 5%;">
+                                <button style="margin-right:5px ;">Like</button>
+                               <a href="{% url 'single-post' post.id %}"><button style="margin-right:5px ;">Comment</button></a> 
+                                <button >Share</button>
+                           </div>
                             <h4 class="card-title">{{post.owner.name}}</h4>
                             <p class="card-text">{{post.description}}</p>
+                            
                             <p class="card-text">{{post.total_likes}} likes</p>
                             <p class="card-text">View all {{post.total_comments}} comments</p>
                         </div>
