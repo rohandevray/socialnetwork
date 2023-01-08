@@ -7,9 +7,10 @@
         <h1><a href="{% url 'user-profile' post.owner.id %}">{{post.owner.name}}</a></h1>
         <p>{{post.description}}</p>
         <div>
-            <button onclick="post.addlike">Like</button>
+            <button onclick="">Like</button>
             <button>Comment</button>
             <button>Share</button>
+            <a href="{% url 'delete' post.id %}">Delete Post</a>
         </div>
         <p>{{post.total_likes}} likes</p>
         <p>{{post.created}}</p>

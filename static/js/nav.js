@@ -11,3 +11,8 @@ $(".fa-heart").dblclick(function () {
     }
   });
   
+
+let cross = document.getElementsByClassName('alert__close')
+cross.addEventListener('click',(e)=>{
+  console.log("HEllo");
+})

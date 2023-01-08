@@ -19,3 +19,13 @@ class Profile(models.Model):
     id= models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True,unique=True)
     def __str__(self):
         return str(self.username)
+
+class Follower(models.Model):
+    owner = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
+    follows = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True,blank=True)
+    name = models.CharField(max_length=200,null=True,blank=True)
+    created =models.DateTimeField(auto_now_add=True)
+    id= models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True,unique=True)
+    def __str__(self):
+        return str(self.owner.name)
+    

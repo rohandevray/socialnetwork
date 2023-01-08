@@ -30,15 +30,16 @@
                                <a href="{% url 'single-post' post.id %}"><button style="margin-right:5px ;">Comment</button></a> 
                                 <button >Share</button>
                            </div>
-                            <h4 class="card-title">{{post.owner.name}}</h4>
-                            <p class="card-text">{{post.description}}</p>
+                           <div class="box" style="display: flex;">
+                            <h4 class="card-title"><a href="{% url 'user-profile' post.owner.id %}">{{post.owner.name}}</a></h4>
+                            <button style="margin-left: 10px;"><a href="">Follow</a></button>
+                           </div>
                             
+                            <p class="card-text">{{post.description}}</p>
                             <p class="card-text">{{post.total_likes}} likes</p>
                             <p class="card-text">View all {{post.total_comments}} comments</p>
                         </div>
                         <div class="btns" style="display: flex;">
-
-                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'user-profile' post.owner.id %}">View Profile</a></div>
                             <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'single-post' post.id %}">View Post</a></div>
                         </div>
                         

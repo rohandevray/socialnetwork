@@ -2,11 +2,12 @@ from django.shortcuts import render ,redirect
 from .models import Profile
 from feed.models import Post
 #for register user form
-from .forms import ProfileForm ,CustomUserCreationForm
+from .forms import ProfileForm,CustomUserCreationForm
 #for web authentication
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+# from .utils import createFollower
 # Create your views here.
 
 def loginUser(request):

@@ -1,5 +1,5 @@
 from django.db.models.signals import post_delete, post_save
-from .models import Profile
+from .models import Profile , Follower
 from django.contrib.auth.models import User
 
 
@@ -16,5 +16,15 @@ def createProfile(sender,instance,created,**kwargs):
             name = user.first_name
         )
 
+def createFollower(sender,instance,created,**kwargs):
+    if created:
+        user = instance
+        follower = Follower.objects.create(
+            user = user,
+            name = user.name
+        )
+        
+
 
 post_save.connect(createProfile,sender=User) 
+post_save.connect(createFollower,sender=Follower)

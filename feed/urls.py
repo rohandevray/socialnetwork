@@ -7,4 +7,5 @@ urlpatterns = [
     path('',views.Posts,name="posts"), #home page
     path('post-form/',views.addPost,name="post-form"),
     path('post/<str:pk>/',views.singlePost,name="single-post"),
+    path('delete/<str:pk>/',views.deletePost,name="delete"),
 ]

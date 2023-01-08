@@ -1,14 +1,18 @@
 from django.shortcuts import render ,redirect
 from .models import Post,Comment
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
+@login_required(login_url="login")
 def Posts(request):
     profile = request.user.profile
     posts = Post.objects.all()
     context={'posts':posts,'profile':profile}
     return render(request,'feed/posts.html',context)
 
+@login_required(login_url="login")
 def addPost(request):
     profile = request.user.profile
     form= PostForm()
@@ -18,11 +22,12 @@ def addPost(request):
             post = form.save(commit=False)
             post.owner = profile
             post.save()
+            messages.success(request,"Successfully posted!")
             return redirect("posts")
-    context={'form':form}
+    context={'form':form,'profile':profile}
     return render(request,'feed/post-form.html',context)
 
-
+@login_required(login_url="login")
 def singlePost(request,pk):
     singlepost = Post.objects.get(id=pk)
     cments = Comment.objects.filter(owner_id=singlepost.id)
@@ -33,3 +38,10 @@ def singlePost(request,pk):
     total_comments = cments.__len__()
     context={'post':singlepost,'cments':cments,'total_comments':total_comments}
     return render(request,'feed/single-post.html',context)
+
+@login_required(login_url="login")
+def deletePost(request,pk):
+    post = Post.objects.get(id=pk)
+    post.delete()
+    messages.info(request,"Post was deleted!")
+    return redirect("posts")

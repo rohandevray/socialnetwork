@@ -17,7 +17,7 @@ class Post(models.Model):
     
     @property
     def addlike(self):
-        self.total_likes= self.total_likes + 1
+        self.total_likes = self.total_likes + 1
         return self.total_likes
 
 
