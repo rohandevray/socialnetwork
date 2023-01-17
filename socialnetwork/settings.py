@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'feed.apps.FeedConfig',
     'users.apps.UsersConfig',
+    'chatroom.apps.ChatroomConfig',
 ]
 
 MIDDLEWARE = [

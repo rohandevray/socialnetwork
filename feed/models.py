@@ -23,6 +23,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     owner = models.ForeignKey(Post,on_delete=models.CASCADE,null=True,blank=True)
+    bosse = models.OneToOneField(Profile,on_delete=models.CASCADE,null=True,blank=True)
     short_troll = models.CharField(max_length=400,null=True,blank=True)
     total_likes = models.IntegerField(null=True,blank=True,default=0)
     created =models.DateTimeField(auto_now_add=True)
