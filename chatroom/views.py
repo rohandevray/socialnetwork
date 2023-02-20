@@ -1,6 +1,7 @@
 from django.shortcuts import render ,redirect
 from .models import MangaPost
-from .forms import MangaPostForm
+from .forms import MangaPostForm , MangaCommentForm
+from django.contrib import messages
 # Create your views here.
 
 
@@ -11,7 +12,18 @@ def chatroom(request):
 
 def mangaZ(request):
     posts = MangaPost.objects.all()
-    context={'posts':posts}
+    form = MangaCommentForm()
+    user_id = request.user.profile.id
+    if request.method == "POST":
+        form = MangaCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.owner = request.user.profile
+            comment.save()
+            messages.success(request,"Comment is successfully added!")
+            return redirect("manga")
+        
+    context={'posts':posts,'form':form}
     return render(request,'chatroom/manga.html',context)
 
 def codeMania(request):
@@ -26,7 +38,14 @@ def addPost(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.owner = request.user.profile
+            
             post.save()
             return redirect("manga")
     context ={'form':form}
     return render(request,"chatroom/post-form.html",context)
+
+# def addComment(request):
+#     form = MangaCommentForm()
+#     context ={'form':form}
+#     return 
+    
